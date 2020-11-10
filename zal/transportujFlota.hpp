@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Stocznia.hpp"
-#include <typeinfo>;
+#include <typeinfo>
 
 unsigned int transportujFlota(unsigned int towar)
 {
@@ -10,15 +10,19 @@ unsigned int transportujFlota(unsigned int towar)
     // Twoja implementacja tutaj
     while (towar > 0) {
         Statek* ship = a();
-        if (towar > ship->transportuj()) {
+        if (towar > ship->transportuj()) 
+        {
             towar -= ship->transportuj();
-            if (typeid(*(ship)) == typeid(Zaglowiec)) {
+            if (typeid(*(ship)) == typeid(Zaglowiec)) 
+            {
                 liczbaZaglowcow++;
             }
             delete ship;
         }
-        else {
+        else 
+        {
             break;
         }
     }
     return liczbaZaglowcow;
+}
