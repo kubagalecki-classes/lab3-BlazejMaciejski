@@ -1,22 +1,25 @@
 #pragma once
 
+#include "Stocznia.hpp"
 #include <typeinfo>;
-#include "include/Stocznia.hpp"
 
 unsigned int transportujFlota(unsigned int towar)
 {
     int      liczbaZaglowcow = 0;
     Stocznia a{};
     // Twoja implementacja tutaj
-    while (towar > 0)
-    {
-        Statek*  ship = a();
-        towar -= ship->transportuj();
-        if (typeid(ship) == typeid(Zaglowiec)) 
-        {
-            liczbaZaglowcow++;
+    while (towar > 0) {
+        Statek* ship = a();
+        if (towar > ship->transportuj()) {
+            towar -= ship->transportuj();
+            if (typeid(ship) == typeid(Zaglowiec)) {
+                liczbaZaglowcow++;
+            }
+            delete ship;
         }
-        delete ship;
-    }  
+        else {
+            break;
+        }
+    }
     return liczbaZaglowcow;
 }
