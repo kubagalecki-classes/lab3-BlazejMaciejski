@@ -10,17 +10,21 @@ unsigned int transportujFlota(unsigned int towar)
     // Twoja implementacja tutaj
     while (towar > 0) {
         Statek* ship = a();
+
+        if (typeid(*(ship)) == typeid(Zaglowiec)) 
+        {
+            liczbaZaglowcow++;
+        }
+
         if (towar > ship->transportuj()) 
         {
             towar -= ship->transportuj();
-            if (typeid(*(ship)) == typeid(Zaglowiec)) 
-            {
-                liczbaZaglowcow++;
-            }
             delete ship;
+            
         }
         else 
         {
+            delete ship;
             break;
         }
     }
